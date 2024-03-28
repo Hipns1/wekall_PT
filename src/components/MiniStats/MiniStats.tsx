@@ -3,8 +3,9 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
 import s from './MiniStats.module.scss'
 import { Skeleton } from '@mui/material'
+import { MiniStatsProps } from 'models/data/MiniStatsProps'
 
-const MiniStats = ({ dataAgents, title, loading }) => {
+const MiniStats: React.FC<MiniStatsProps> = ({ dataAgents, title, loading }) => {
     ChartJS.register(ArcElement, Tooltip, Legend)
     const agentNames = Object.keys(dataAgents)
     const callsData = Object.values(dataAgents)

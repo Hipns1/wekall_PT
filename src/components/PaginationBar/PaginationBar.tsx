@@ -1,13 +1,14 @@
-import { Pagination } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { Pagination } from '@mui/material'
+import { PaginationBarProps } from 'models/data/PaginationBarProps'
 
-const PaginationBar = ({ calls, handlePage, page, setPage, loading }) => {
+const PaginationBar: React.FC<PaginationBarProps> = ({ calls, handlePage, page, setPage, loading }) => {
     const paginationActive = () => {
         if (calls.length !== 0) {
             return 15
         } else return 0
     }
-    const [counterPage, setCounterPage] = useState(paginationActive)
+    const [counterPage, setCounterPage] = useState<number>(paginationActive())
 
     const incrementalCounter = (value: number) => {
         handlePage(value)

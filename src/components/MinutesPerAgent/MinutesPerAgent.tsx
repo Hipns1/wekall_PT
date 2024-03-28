@@ -3,8 +3,9 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 import { Line } from 'react-chartjs-2'
 import s from './MinutesPerAgent.module.scss'
 import { Skeleton } from '@mui/material'
+import { MinutesPerAgentProps } from 'models/data/MinutesPerAgentProps '
 
-const MinutesPerAgent = ({ minuterPerAgent, loading }) => {
+const MinutesPerAgent: React.FC<MinutesPerAgentProps> = ({ minuterPerAgent, loading }) => {
     ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement)
     const agentNames = Object.keys(minuterPerAgent)
     const callsData = Object.values(minuterPerAgent)

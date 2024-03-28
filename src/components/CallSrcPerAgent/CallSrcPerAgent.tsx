@@ -3,13 +3,15 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.
 import { Bar } from 'react-chartjs-2'
 import s from './CallSrcPerAgent.module.scss'
 import { Skeleton } from '@mui/material'
+import { CallsProps } from 'models/entities/CallsProps'
+import { CallSrcPerAgentProps } from 'models/data/CallSrcPerAgentProps'
 
-const CallSrcPerAgent = ({ calls, loading }) => {
+const CallSrcPerAgent: React.FC<CallSrcPerAgentProps> = ({ calls, loading }) => {
     ChartJS.register(CategoryScale, LinearScale, BarElement)
 
     /* Calcular el número de llamadas de cada fuente por agente */
-    const calculateSourceRelation = (callsData) => {
-        const sourcePerAgent = {}
+    const calculateSourceRelation = (callsData: CallsProps[]) => {
+        const sourcePerAgent: Record<string, Record<string, number>> = {}
         callsData.forEach((call) => {
             if (!sourcePerAgent[call.agent]) {
                 sourcePerAgent[call.agent] = {}
@@ -49,7 +51,11 @@ const CallSrcPerAgent = ({ calls, loading }) => {
     return (
         <div className={s.container}>
             <h1 className={s.title}>Fuente de las llamadas</h1>
-            {!loading ? <Bar data={data} /> : <Skeleton width={540} height={270} animation={'wave'} />}
+            {!loading ? (
+                <Bar data={data} data-testid='bar-chart' />
+            ) : (
+                <Skeleton data-testid='skeleton' width={540} height={270} animation={'wave'} />
+            )}
         </div>
     )
 }

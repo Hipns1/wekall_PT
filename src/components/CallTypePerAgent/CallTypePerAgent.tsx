@@ -3,13 +3,15 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.
 import { Bar } from 'react-chartjs-2'
 import s from './CallTypePerAgent.module.scss'
 import { Skeleton } from '@mui/material'
+import { CallsProps } from 'models/entities/CallsProps'
+import { CallTypePerAgentProps } from 'models/data/CallTypePerAgentProps'
 
-const CallTypePerAgent = ({ calls, loading }) => {
+const CallTypePerAgent: React.FC<CallTypePerAgentProps> = ({ calls, loading }) => {
     ChartJS.register(CategoryScale, LinearScale, BarElement)
 
     /* Llamadas de cada tipo por agente*/
-    const calculateCallsRelation = (callsData) => {
-        const callsPerAgent = {}
+    const calculateCallsRelation = (callsData: CallsProps[]) => {
+        const callsPerAgent: Record<string, { inbound: number; outbound: number }> = {}
         callsData.forEach((call) => {
             if (!callsPerAgent[call.agent]) {
                 callsPerAgent[call.agent] = { inbound: 0, outbound: 0 }
@@ -29,7 +31,7 @@ const CallTypePerAgent = ({ calls, loading }) => {
     const inboundCalls = agentNames.map((agent) => callsRelation[agent].inbound || 0)
     const outboundCalls = agentNames.map((agent) => callsRelation[agent].outbound || 0)
 
-    // Generar colores aleatorios
+    /* Generar colores aleatorios */
     const randomColor = () => {
         return `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`
     }

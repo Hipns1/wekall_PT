@@ -3,8 +3,10 @@ import moment from 'moment'
 import { secondsToMinutes } from 'utils/secondsToMinutes'
 import s from './CallList.module.scss'
 import SkeletonLoader from './SkeletonLoader'
+import { CallsProps } from 'models/entities/CallsProps'
+import { CallListProps } from 'models/data/CallListProps'
 
-const CallList = ({ calls, loading }: any) => {
+const CallList: React.FC<CallListProps> = ({ calls, loading }) => {
     if (loading) {
         return <SkeletonLoader />
     } else {
@@ -44,7 +46,7 @@ const CallList = ({ calls, loading }: any) => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {calls.map((call: any) => (
+                                {calls.map((call: CallsProps) => (
                                     <TableRow key={call.id}>
                                         <TableCell component='th' scope='row'>
                                             {call?.id}

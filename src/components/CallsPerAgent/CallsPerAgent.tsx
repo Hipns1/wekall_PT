@@ -3,8 +3,9 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 import s from './CallsPerAgent.module.scss'
 import { Skeleton } from '@mui/material'
+import { CallsPerAgentProps } from 'models/data/CallsPerAgentProps'
 
-const CallsPerAgent = ({ callsPerAgent, loading }) => {
+const CallsPerAgent: React.FC<CallsPerAgentProps> = ({ callsPerAgent, loading }) => {
     ChartJS.register(ArcElement, Tooltip, Legend)
     const agentNames = Object.keys(callsPerAgent)
     const callsData = Object.values(callsPerAgent)

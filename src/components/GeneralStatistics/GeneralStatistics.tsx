@@ -3,10 +3,12 @@ import s from './GeneralStatistics.module.scss'
 import { secondsToMinutes } from 'utils/secondsToMinutes'
 import MiniStats from 'components/MiniStats/MiniStats'
 import { Skeleton } from '@mui/material'
+import { CallsProps } from 'models/entities/CallsProps'
+import { GeneralStatisticsProps, TotalBySource } from 'models/data/GeneralStatisticsProps'
 
-const GeneralStatistics = ({ calls, loading }) => {
-    /* Funcion para calcular la duracion total de las llamadas */
-    const calculateTotalDuration = (calls) => {
+const GeneralStatistics: React.FC<GeneralStatisticsProps> = ({ calls, loading }) => {
+    /* Función para calcular la duración total de las llamadas */
+    const calculateTotalDuration = (calls: CallsProps[]): string => {
         let totalDuration = 0
         calls.forEach((call) => {
             totalDuration += call.duration
@@ -17,8 +19,8 @@ const GeneralStatistics = ({ calls, loading }) => {
         return `${hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
     }
 
-    /* Funcion para calcular el promedio de duracion de las llamadas*/
-    const calculateAverageDuration = (calls) => {
+    /* Función para calcular el promedio de duración de las llamadas */
+    const calculateAverageDuration = (calls: CallsProps[]): string => {
         let totalDuration = 0
         calls.forEach((call) => {
             totalDuration += call.duration
@@ -28,9 +30,9 @@ const GeneralStatistics = ({ calls, loading }) => {
         return secondsToMinutes(averageDuration)
     }
 
-    /* Funcion para calcular el total de llamadas por fuente */
-    const calculateTotalBySource = (calls) => {
-        const totalBySource = {}
+    /* Función para calcular el total de llamadas por fuente */
+    const calculateTotalBySource = (calls: CallsProps[]): TotalBySource => {
+        const totalBySource: TotalBySource = {}
         calls.forEach((call) => {
             const source = call.source
             if (totalBySource[source]) {
@@ -53,7 +55,7 @@ const GeneralStatistics = ({ calls, loading }) => {
                 )}
             </div>
             <div className={`${s.stats} ${s.calls_average}`}>
-                <h1 className={s.title}>Promedio de duracion de llamadas</h1>
+                <h1 className={s.title}>Promedio de duración de llamadas</h1>
                 {!loading ? (
                     <div className={s.text}>{calculateAverageDuration(calls)} min.</div>
                 ) : (

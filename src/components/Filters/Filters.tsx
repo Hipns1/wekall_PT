@@ -1,9 +1,20 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import CalendarView from 'components/Calendar/CalendarView'
+import CalendarView from 'components/CalendarView/CalendarView'
 import moment from 'moment'
 import s from './Filters.module.scss'
+import { FiltersProps } from 'models/data/FilterProps'
 
-const Filters = ({ setCallType, callType, limit, setLimit, startDate, setStartDate, setEndDate, endDate, loading }) => {
+const Filters: React.FC<FiltersProps> = ({
+    setCallType,
+    callType,
+    limit,
+    setLimit,
+    startDate,
+    setStartDate,
+    setEndDate,
+    endDate,
+    loading,
+}) => {
     const handleStorage = (key: string, data: string) => {
         const existingKey = localStorage.getItem(key)
         if (existingKey === null) {

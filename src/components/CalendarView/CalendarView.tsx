@@ -4,8 +4,9 @@ import s from './CalendarView.module.scss'
 import calendar from '../../assets/calendar.png'
 import close from '../../assets/close.png'
 import moment from 'moment'
+import { CalendarViewProps } from 'models/data/CalendarViewProps'
 
-const CalendarView = ({ startDate, endDate, handleDate, loading }) => {
+const CalendarView: React.FC<CalendarViewProps> = ({ startDate, endDate, handleDate, loading }) => {
     const [isOpen, setIsOpen] = useState(false)
 
     const handleCalendar = () => {
@@ -26,7 +27,7 @@ const CalendarView = ({ startDate, endDate, handleDate, loading }) => {
                     className={s.calendar}
                     selectRange={true}
                     onChange={(date: any) => handleDate(date)}
-                    value={[moment(startDate).format('L'), moment(endDate).format('L')]}
+                    value={[moment(startDate).toDate(), moment(endDate).toDate()]}
                 />
                 <button className={s.btn} onClick={handleCalendar}>
                     Aplicar
