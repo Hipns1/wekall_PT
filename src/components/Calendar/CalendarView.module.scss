@@ -17,11 +17,31 @@
 
     .calendar_container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 50px;
+
+        .btn {
+            color: white;
+            background-color: #00536B;
+            padding: 10px 30px;
+            border-radius: 6px;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #00536B;
+
+            &:hover {
+                color: #00536B;
+                background-color: transparent;
+                border: 2px solid #00536B;
+            }
+        }
 
         .calendar {
-            border-radius: 15px;
+            border-radius: 6px;
             -webkit-box-shadow: 0px 0px 35px 2px rgba(0, 0, 0, 0.72);
             -moz-box-shadow: 0px 0px 35px 2px rgba(0, 0, 0, 0.72);
             box-shadow: 0px 0px 35px 2px rgba(0, 0, 0, 0.72);

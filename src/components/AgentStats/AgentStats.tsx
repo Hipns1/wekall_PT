@@ -5,7 +5,7 @@ import MinutesPerAgent from 'components/MinutesPerAgent/MinutesPerAgent'
 import CallTypePerAgent from 'components/CallTypePerAgent/CallTypePerAgent'
 import CallSrcPerAgent from 'components/CallSrcPerAgent/CallSrcPerAgent'
 
-const AgentStats = ({ calls }: any) => {
+const AgentStats = ({ calls, loading }: any) => {
     //console.log(calls)
     /* Funcion que calcula el numero de llamadas totales por agente */
     const callsPerAgent = calls.reduce((acc, call) => {
@@ -53,22 +53,31 @@ const AgentStats = ({ calls }: any) => {
             <h2>Estadísticas de Agentes</h2>
             <div className={s.body}>
                 <div className={s.first_container}>
-                    <CallsPerAgent callsPerAgent={callsPerAgent} />
+                    <CallsPerAgent callsPerAgent={callsPerAgent} loading={loading} />
                     <div className={s.minutes_stats}>
                         <div className={s.other_stats}>
-                            <MiniStats dataAgents={externalCallsPerAgent} title={'Llamadas externas'} />
-                            <MiniStats dataAgents={firstContactCallsPerAgent} title={'Primer contacto'} />
+                            <MiniStats
+                                dataAgents={externalCallsPerAgent}
+                                title={'Llamadas externas'}
+                                loading={loading}
+                            />
+                            <MiniStats
+                                dataAgents={firstContactCallsPerAgent}
+                                title={'Primer contacto'}
+                                loading={loading}
+                            />
                             <MiniStats
                                 dataAgents={callsBetweenExtensionsPerAgent}
                                 title={'Llamadas entre extensiones'}
+                                loading={loading}
                             />
                         </div>
-                        <MinutesPerAgent minuterPerAgent={totalMinutesPerAgent} />
+                        <MinutesPerAgent minuterPerAgent={totalMinutesPerAgent} loading={loading} />
                     </div>
                 </div>
                 <div className={s.second_container}>
-                    <CallTypePerAgent calls={calls} />
-                    <CallSrcPerAgent calls={calls} />
+                    <CallTypePerAgent calls={calls} loading={loading} />
+                    <CallSrcPerAgent calls={calls} loading={loading} />
                 </div>
             </div>
         </div>

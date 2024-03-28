@@ -28,6 +28,9 @@ const CalendarView = ({ startDate, endDate, handleDate, loading }) => {
                     onChange={(date: any) => handleDate(date)}
                     value={[moment(startDate).format('L'), moment(endDate).format('L')]}
                 />
+                <button className={s.btn} onClick={handleCalendar}>
+                    Aplicar
+                </button>
             </div>
         </div>
     )

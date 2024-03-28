@@ -2,8 +2,9 @@ import React from 'react'
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 import s from './CallSrcPerAgent.module.scss'
+import { Skeleton } from '@mui/material'
 
-const CallSrcPerAgent = ({ calls }) => {
+const CallSrcPerAgent = ({ calls, loading }) => {
     ChartJS.register(CategoryScale, LinearScale, BarElement)
 
     /* Calcular el número de llamadas de cada fuente por agente */
@@ -48,7 +49,7 @@ const CallSrcPerAgent = ({ calls }) => {
     return (
         <div className={s.container}>
             <h1 className={s.title}>Fuente de las llamadas</h1>
-            <Bar data={data} />
+            {!loading ? <Bar data={data} /> : <Skeleton width={540} height={270} animation={'wave'} />}
         </div>
     )
 }

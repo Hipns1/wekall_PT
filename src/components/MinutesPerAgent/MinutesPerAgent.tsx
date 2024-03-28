@@ -2,8 +2,9 @@ import React from 'react'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement } from 'chart.js' // Asegúrate de importar CategoryScale
 import { Line } from 'react-chartjs-2'
 import s from './MinutesPerAgent.module.scss'
+import { Skeleton } from '@mui/material'
 
-const MinutesPerAgent = ({ minuterPerAgent }) => {
+const MinutesPerAgent = ({ minuterPerAgent, loading }) => {
     ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement)
     const agentNames = Object.keys(minuterPerAgent)
     const callsData = Object.values(minuterPerAgent)
@@ -25,7 +26,7 @@ const MinutesPerAgent = ({ minuterPerAgent }) => {
     return (
         <div className={s.container}>
             <h1 className={s.title}>{'Minutos totales'}</h1>
-            <Line data={data} />
+            {!loading ? <Line data={data} /> : <Skeleton width={630} height={300} animation={'wave'} />}
         </div>
     )
 }

@@ -2,8 +2,9 @@ import React from 'react'
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 import s from './CallTypePerAgent.module.scss'
+import { Skeleton } from '@mui/material'
 
-const CallTypePerAgent = ({ calls }) => {
+const CallTypePerAgent = ({ calls, loading }) => {
     ChartJS.register(CategoryScale, LinearScale, BarElement)
 
     /* Llamadas de cada tipo por agente*/
@@ -52,7 +53,7 @@ const CallTypePerAgent = ({ calls }) => {
     return (
         <div className={s.container}>
             <h1 className={s.title}>Tipo de llamada</h1>
-            <Bar data={data} />
+            {!loading ? <Bar data={data} /> : <Skeleton width={540} height={270} animation={'wave'} />}
         </div>
     )
 }

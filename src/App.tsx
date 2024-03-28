@@ -29,7 +29,7 @@ const App = () => {
     }
 
     /* Funcion general para comprobar el storage y setear  + effect*/
-    const handleStorage = useCallback((key, setData) => {
+    const handleStorage = useCallback((key: string, setData) => {
         const existingData = localStorage.getItem(key)
         if (existingData !== null) {
             setData(JSON.parse(existingData))
@@ -109,8 +109,11 @@ const App = () => {
                         <EmptyState />
                     ) : (
                         <div className={s.table_container}>
-                            <CallList calls={calls} limit={limit} loading={loading} />
-                            <AgentStats calls={calls} />
+                            <div>
+                                <CallList calls={calls} limit={limit} loading={loading} />
+                                {/* <GeneralStatistics /> */}
+                            </div>
+                            <AgentStats calls={calls} loading={loading} />
                         </div>
                     )}
                 </div>
