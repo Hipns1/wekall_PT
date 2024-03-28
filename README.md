@@ -1,46 +1,92 @@
-# Getting Started with Create React App
+# Aplicación de Prueba Técnica - Registro de Llamadas Telefónicas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esta aplicación es una solución para el registro de llamadas telefónicas, proporcionando funcionalidades para filtrar,
+paginar y visualizar los datos de llamadas simuladas. Se han utilizado [React](https://reactjs.org/) como framework y
+[Bootstrap](https://getbootstrap.com/) como librería de estilos.
 
-## Available Scripts
+## Instrucciones de Uso
 
-In the project directory, you can run:
+### Instalación
 
-### `npm start`
+1. Clona este repositorio en tu máquina local.
+2. Instala las dependencias usando npm:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Ejecución
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Ejecuta la aplicación usando el siguiente comando:
+2. Abre tu navegador y visita [http://localhost:3000](http://localhost:3000).
 
-### `npm test`
+## Funcionalidades Implementadas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Filtrado por Rango de Fechas:** Los usuarios pueden filtrar las llamadas por fecha de inicio y fecha de fin.
+2. **Filtrado por Tipo de Llamada:** Los usuarios pueden filtrar las llamadas por tipo de llamada (entrada/salida).
+3. **Paginación:** Los datos de llamadas se presentan con paginación.
+4. **Animación de Carga:** Se muestra una animación de carga mientras se obtienen los datos.
+5. **Estado Vacío:** Se muestra un mensaje de estado vacío cuando no hay datos disponibles.
+6. **Estadísticas por Agente:**
+    - Número de llamadas por agente.
+    - Número de llamadas que son primer contacto por agente y en total.
+    - Número de llamadas entre extensiones.
+    - Suma de minutos por agente.
+7. **Casos de Uso Adicionales:**
+    - Identificación de tendencias de llamadas por día de la semana.
+    - Análisis de duración promedio de llamadas por tipo de llamada.
+    - Seguimiento de cambios en el volumen de llamadas durante períodos específicos.
+8. **Valor Adicional Propuesto:**
+    - Análisis de la duración promedio de llamadas en función del origen y el destino.
 
-### `npm run build`
+## Pruebas Unitarias
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Se han implementado pruebas unitarias para garantizar el correcto funcionamiento de las funcionalidades clave de la
+aplicación.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Persistencia de Estados
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+La aplicación permite a los usuarios guardar y restaurar su estado de navegación, incluidos los filtros aplicados,
+incluso después de cerrar y volver a abrir la aplicación.
 
-### `npm run eject`
+## Documentación para QA
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Funcionalidades:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Filtrado por Fechas:**
+    - **Objetivo:** Permitir a los usuarios filtrar las llamadas por fecha de inicio y fecha de fin.
+    - **Prueba:** Seleccionar una fecha de inicio y una fecha de fin. Verificar que solo se muestren las llamadas dentro
+      del rango de fechas seleccionado.
+2. **Filtrado por Tipo de Llamada:**
+    - **Objetivo:** Permitir a los usuarios filtrar las llamadas por tipo (entrada/salida).
+    - **Prueba:** Seleccionar el tipo de llamada (entrada/salida). Verificar que solo se muestren las llamadas del tipo
+      seleccionado.
+3. **Paginación:**
+    - **Objetivo:** Dividir los resultados de las llamadas en páginas.
+    - **Prueba:** Verificar que haya múltiples páginas disponibles cuando hay más de la cantidad máxima de llamadas por
+      página.
+4. **Animación de Carga:**
+    - **Objetivo:** Proporcionar retroalimentación visual mientras se cargan los datos.
+    - **Prueba:** Iniciar una consulta de llamadas. Verificar que se muestre una animación de carga hasta que se
+      muestren los datos.
+5. **Estado Vacío:**
+    - **Objetivo:** Manejar escenarios donde no se devuelvan datos.
+    - **Prueba:** Filtrar las llamadas con un rango de fechas que no tenga resultados. Verificar que se muestre un
+      mensaje indicando que no hay datos disponibles.
+6. **Persistencia de Estados:**
+    - **Objetivo:** Permitir que los usuarios guarden y restauren su estado de navegación.
+    - **Prueba:** Aplicar varios filtros y cerrar la aplicación. Al volver a abrir la aplicación, verificar que los
+      filtros aplicados anteriormente se mantengan.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Notas Adicionales
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+-   La aplicación se ha diseñado con enfoque en la usabilidad y la experiencia del usuario.
+-   Se recomienda el uso de Google Chrome para una mejor experiencia de usuario debido a la compatibilidad con las
+    últimas tecnologías web.
 
-## Learn More
+Para más detalles técnicos y acceso al código fuente, por favor refiérase al repositorio en
+[GitHub](https://github.com/tuusuario/nombre-repo).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Por favor, siéntase libre de contactarme si tiene alguna pregunta o necesita más información.
+
+¡Gracias!
+
+**Desarrollador:** Tu Nombre Tu Correo Electrónico
