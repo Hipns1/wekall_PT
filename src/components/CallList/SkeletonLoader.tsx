@@ -3,8 +3,8 @@ import { Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead
 const SkeletonLoader = ({ limit }) => {
     return (
         <div>
-            <TableContainer component={Paper} sx={{ minWidth: 650, maxWidth: 1100 }}>
-                <Table sx={{ minWidth: 650, maxWidth: 1100 }} size='small' aria-label='simple table'>
+            <TableContainer component={Paper} sx={{ minWidth: 650, maxWidth: 1200 }}>
+                <Table sx={{ minWidth: 650, maxWidth: 1200 }} size='small' aria-label='simple table'>
                     <TableHead>
                         <TableRow style={{ backgroundColor: 'rgba(25, 118, 210, 0.12)' }}>
                             <TableCell>

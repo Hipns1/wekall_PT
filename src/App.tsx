@@ -28,14 +28,13 @@ const App = () => {
         setPage(Number(pageStorage))
     }
 
-    /* Funcion general para comprobar el storage y setear */
+    /* Funcion general para comprobar el storage y setear  + effect*/
     const handleStorage = useCallback((key, setData) => {
         const existingData = localStorage.getItem(key)
         if (existingData !== null) {
             setData(JSON.parse(existingData))
         }
     }, [])
-
     useEffect(() => {
         const storageMappings = {
             start_date: setStartDate,
@@ -110,9 +109,9 @@ const App = () => {
                     ) : (
                         <div className={s.table_container}>
                             <CallList calls={calls} limit={limit} loading={loading} />
+                            <AgentStats calls={calls} />
                         </div>
                     )}
-                    <AgentStats calls={calls} />
                 </div>
             </div>
         </div>

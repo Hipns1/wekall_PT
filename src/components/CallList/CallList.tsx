@@ -10,8 +10,8 @@ const CallList = ({ calls, limit, loading }: any) => {
     } else {
         return (
             <div className={s.container}>
-                <TableContainer component={Paper} sx={{ minWidth: 650, maxWidth: 1100 }}>
-                    <Table sx={{ minWidth: 650, maxWidth: 1100 }} size='small' aria-label='simple table'>
+                <TableContainer component={Paper} sx={{ minWidth: 650, maxWidth: 1200 }}>
+                    <Table sx={{ minWidth: 650, maxWidth: 1200 }} size='small' aria-label='simple table'>
                         <TableHead>
                             <TableRow style={{ backgroundColor: 'rgba(25, 118, 210, 0.12)' }}>
                                 <TableCell className={s.title}>Id</TableCell>
@@ -19,10 +19,10 @@ const CallList = ({ calls, limit, loading }: any) => {
                                     Agente
                                 </TableCell>
                                 <TableCell align='right' className={s.title}>
-                                    Fecha de Inicio
+                                    Fecha
                                 </TableCell>
                                 <TableCell align='right' className={s.title}>
-                                    Fecha de Fin
+                                    Estado
                                 </TableCell>
                                 <TableCell align='right' className={s.title}>
                                     Duración
@@ -44,7 +44,7 @@ const CallList = ({ calls, limit, loading }: any) => {
                                     </TableCell>
                                     <TableCell align='right'>{call?.agent}</TableCell>
                                     <TableCell align='right'>{moment(call?.start_date).format('YYYY/MM/DD')}</TableCell>
-                                    <TableCell align='right'>{moment(call?.end_date).format('YYYY/MM/DD')} </TableCell>
+                                    <TableCell align='right'>{call?.status} </TableCell>
                                     <TableCell align='right'>{secondsToMinutes(call?.duration)} min.</TableCell>
                                     <TableCell align='right'>{call?.call_type}</TableCell>
                                     <TableCell align='right'>{call?.source}</TableCell>
