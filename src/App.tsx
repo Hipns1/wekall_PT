@@ -51,6 +51,7 @@ const App = () => {
         }
     }, [handleStorage])
 
+    /* Manejo de la peticion */
     useEffect(() => {
         const fetchCalls = async (page) => {
             try {
@@ -86,7 +87,7 @@ const App = () => {
                     <div className={s.pagination_container}>
                         <div className={s.date_container}>
                             <h4>{`Rango de fechas: ${startDate} => ${endDate}`}</h4>
-                            {callType !== 'todos' ? (
+                            {callType !== 'todos' && (
                                 <>
                                     {!loading ? (
                                         <p>{`Mostrando ${calls.length} de ${limit} resultados`}</p>
@@ -94,7 +95,7 @@ const App = () => {
                                         <Skeleton />
                                     )}
                                 </>
-                            ) : null}
+                            )}
                         </div>
                         <PaginationBar
                             calls={calls}

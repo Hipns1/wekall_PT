@@ -2,9 +2,11 @@ import CallsPerAgent from 'components/CallsPerAgent/CallsPerAgent'
 import s from './AgentStats.module.scss'
 import MiniStats from 'components/MiniStats/MiniStats'
 import MinutesPerAgent from 'components/MinutesPerAgent/MinutesPerAgent'
+import CallTypePerAgent from 'components/CallTypePerAgent/CallTypePerAgent'
+import CallSrcPerAgent from 'components/CallSrcPerAgent/CallSrcPerAgent'
 
 const AgentStats = ({ calls }: any) => {
-    console.log(calls)
+    //console.log(calls)
     /* Funcion que calcula el numero de llamadas totales por agente */
     const callsPerAgent = calls.reduce((acc, call) => {
         acc[call.agent] = (acc[call.agent] || 0) + 1
@@ -50,14 +52,23 @@ const AgentStats = ({ calls }: any) => {
         <div className={s.container}>
             <h2>Estadísticas de Agentes</h2>
             <div className={s.body}>
-                <CallsPerAgent callsPerAgent={callsPerAgent} />
-                <div className={s.minutes_stats}>
-                    <div className={s.other_stats}>
-                        <MiniStats dataAgents={externalCallsPerAgent} title={'Llamadas externas'} />
-                        <MiniStats dataAgents={firstContactCallsPerAgent} title={'Primer contacto'} />
-                        <MiniStats dataAgents={callsBetweenExtensionsPerAgent} title={'Llamadas entre extensiones'} />
+                <div className={s.first_container}>
+                    <CallsPerAgent callsPerAgent={callsPerAgent} />
+                    <div className={s.minutes_stats}>
+                        <div className={s.other_stats}>
+                            <MiniStats dataAgents={externalCallsPerAgent} title={'Llamadas externas'} />
+                            <MiniStats dataAgents={firstContactCallsPerAgent} title={'Primer contacto'} />
+                            <MiniStats
+                                dataAgents={callsBetweenExtensionsPerAgent}
+                                title={'Llamadas entre extensiones'}
+                            />
+                        </div>
+                        <MinutesPerAgent minuterPerAgent={totalMinutesPerAgent} />
                     </div>
-                    <MinutesPerAgent minuterPerAgent={totalMinutesPerAgent} />
+                </div>
+                <div className={s.second_container}>
+                    <CallTypePerAgent calls={calls} />
+                    <CallSrcPerAgent calls={calls} />
                 </div>
             </div>
         </div>
