@@ -20,6 +20,9 @@ const get = async (url: string, headers = {}, params = {}) => {
 	}
 }
 
-export default {
-	get,
+const exportedObject = {
+	get
 };
+
+export default exportedObject
+
