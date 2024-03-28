@@ -5,13 +5,13 @@ import calendar from '../../assets/calendar.png'
 import close from '../../assets/close.png'
 import moment from 'moment'
 
-const CalendarView = ({ startDate, endDate, handleDate }) => {
+const CalendarView = ({ startDate, endDate, handleDate, loading }) => {
     const [isOpen, setIsOpen] = useState(false)
 
     const handleCalendar = () => {
-        setIsOpen(!isOpen)
+        !loading && setIsOpen(!isOpen)
     }
-    console.log(startDate, endDate)
+
     return (
         <div className={s.container}>
             <div className={s.icon}>

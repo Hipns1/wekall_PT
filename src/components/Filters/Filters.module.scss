@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 16px 0;
+    margin: auto;
+    max-width: 1100px;
+
+    @media (max-width: 768px) {
+        justify-content: center;
+    }
+
+    .filters_container {
+        display: flex;
+        align-items: center;
+        margin-left: -5px;
+
+        .title {
+            color: #00536B;
+        }
+    }
+}

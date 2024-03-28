@@ -1,12 +1,15 @@
 // App.js
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Filters from './components/Filters/Filters'
 import CallList from './components/CallList/CallList'
-import Loading from './components/Loading/Loading'
 import EmptyState from './components/EmptyState/EmptyState'
 import AgentStats from './components/AgentStats/AgentStats'
 import callData from 'services/implementation/callData/get'
 import { getDate } from 'utils/getDate'
+import s from './styles/App.module.scss'
+import { setLocalStorage } from 'utils/setLocalStorage'
+import PaginationBar from 'components/PaginationBar/PaginationBar'
+import { Skeleton } from '@mui/material'
 
 const App = () => {
     const { startDateToday, endDateToday } = getDate()
@@ -18,38 +21,36 @@ const App = () => {
     const [startDate, setStartDate] = useState(startDateToday)
     const [endDate, setEndDate] = useState(endDateToday)
 
+    /* Funcion para manejar la paginacion */
+    const handlePage = (value: string) => {
+        const pageStorage = value
+        setLocalStorage('page', pageStorage)
+        setPage(Number(pageStorage))
+    }
+
     /* Funcion general para comprobar el storage y setear */
-    const handleStorage = (existingData, setData) => {
+    const handleStorage = useCallback((key, setData) => {
+        const existingData = localStorage.getItem(key)
         if (existingData !== null) {
             setData(JSON.parse(existingData))
         }
-    }
-
-    /* Comprobar el storage de dates */
-    useEffect(() => {
-        const existingStartDate = localStorage.getItem('start_date')
-        handleStorage(existingStartDate, setStartDate)
-        const existingEndDate = localStorage.getItem('end_date')
-        handleStorage(existingEndDate, setEndDate)
     }, [])
 
-    /* Comprobar el storage de type */
     useEffect(() => {
-        const existingCallType = localStorage.getItem('call_type')
-        handleStorage(existingCallType, setCallType)
-    }, [])
+        const storageMappings = {
+            start_date: setStartDate,
+            end_date: setEndDate,
+            call_type: setCallType,
+            page: setPage,
+            limit: setLimit,
+        }
 
-    /* Comprobar el storage de limit */
-    useEffect(() => {
-        const existingLimit = localStorage.getItem('limit')
-        handleStorage(existingLimit, setLimit)
-    }, [])
-
-    /* Comprobar el storage de page */
-    useEffect(() => {
-        const existingPage = localStorage.getItem('page')
-        handleStorage(existingPage, setPage)
-    }, [setPage])
+        for (const key in storageMappings) {
+            if (Object.hasOwnProperty.call(storageMappings, key)) {
+                handleStorage(key, storageMappings[key])
+            }
+        }
+    }, [handleStorage])
 
     useEffect(() => {
         const fetchCalls = async (page) => {
@@ -67,27 +68,53 @@ const App = () => {
     }, [page, limit, callType, startDate, endDate])
 
     return (
-        <div>
-            <Filters
-                setCallType={setCallType}
-                callType={callType}
-                limit={limit}
-                setLimit={setLimit}
-                page={page}
-                setPage={setPage}
-                startDate={startDate}
-                setStartDate={setStartDate}
-                setEndDate={setEndDate}
-                endDate={endDate}
-            />
-            {loading && <Loading />}
-            {!loading && calls?.length === 0 && <EmptyState />}
-            <>
-                {callType !== 'todos' ? `Mostrando ${calls.length} de ${limit} resultados ` : ''}
-                <h5>{`Rango de fechas: ${startDate} => ${endDate}`}</h5>
-            </>
-            {!loading && calls?.length > 0 && <CallList calls={calls} callType={callType} limit={limit} />}
-            {/*  {!loading && calls.length > 0 && <AgentStats calls={calls} />} */}
+        <div className={s.container}>
+            <div className={s.header}>
+                <Filters
+                    setCallType={setCallType}
+                    callType={callType}
+                    limit={limit}
+                    setLimit={setLimit}
+                    startDate={startDate}
+                    setStartDate={setStartDate}
+                    setEndDate={setEndDate}
+                    endDate={endDate}
+                    loading={loading}
+                />
+            </div>
+            <div className={s.body}>
+                <div>
+                    <div className={s.pagination_container}>
+                        <div className={s.date_container}>
+                            <h4>{`Rango de fechas: ${startDate} => ${endDate}`}</h4>
+                            {callType !== 'todos' ? (
+                                <>
+                                    {!loading ? (
+                                        <p>{`Mostrando ${calls.length} de ${limit} resultados`}</p>
+                                    ) : (
+                                        <Skeleton />
+                                    )}
+                                </>
+                            ) : null}
+                        </div>
+                        <PaginationBar
+                            calls={calls}
+                            handlePage={handlePage}
+                            page={page}
+                            setPage={setPage}
+                            loading={loading}
+                        />
+                    </div>
+                    {!loading && calls?.length === 0 ? (
+                        <EmptyState />
+                    ) : (
+                        <div className={s.table_container}>
+                            <CallList calls={calls} limit={limit} loading={loading} />
+                        </div>
+                    )}
+                    <AgentStats calls={calls} />
+                </div>
+            </div>
         </div>
     )
 }
