@@ -25,6 +25,16 @@
             margin: auto;
             max-width: 1200px;
 
+            .table {
+                display: flex;
+                gap: 20px;
+                justify-content: space-between;
+
+                .modify {
+                    width: 100%;
+                }
+            }
+
             @media (max-width: 768px) {
                 overflow: hidden;
             }

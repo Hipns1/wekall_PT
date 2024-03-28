@@ -1,4 +1,5 @@
 export function secondsToMinutes(seconds: number) {
+    seconds = Math.floor(seconds) // Convertir a entero
     var minutes = Math.floor(seconds / 60)
     var remainingSeconds = seconds % 60
 

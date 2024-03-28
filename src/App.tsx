@@ -10,6 +10,7 @@ import s from './styles/App.module.scss'
 import { setLocalStorage } from 'utils/setLocalStorage'
 import PaginationBar from 'components/PaginationBar/PaginationBar'
 import { Skeleton } from '@mui/material'
+import GeneralStatistics from 'components/GeneralStatistics/GeneralStatistics'
 
 const App = () => {
     const { startDateToday, endDateToday } = getDate()
@@ -109,9 +110,11 @@ const App = () => {
                         <EmptyState />
                     ) : (
                         <div className={s.table_container}>
-                            <div>
-                                <CallList calls={calls} limit={limit} loading={loading} />
-                                {/* <GeneralStatistics /> */}
+                            <div className={s.table}>
+                                <div className={s.modify}>
+                                    <CallList calls={calls} loading={loading} />
+                                </div>
+                                <GeneralStatistics calls={calls} loading={loading} />
                             </div>
                             <AgentStats calls={calls} loading={loading} />
                         </div>
