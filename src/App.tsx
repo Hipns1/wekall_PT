@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect, useCallback } from 'react'
 import Filters from './components/Filters/Filters'
 import CallList from './components/CallList/CallList'
@@ -11,16 +10,17 @@ import { setLocalStorage } from 'utils/setLocalStorage'
 import PaginationBar from 'components/PaginationBar/PaginationBar'
 import { Skeleton } from '@mui/material'
 import GeneralStatistics from 'components/GeneralStatistics/GeneralStatistics'
+import { CallsProps } from 'models/entities/CallsProps'
 
-const App = () => {
+const App: React.FC = () => {
     const { startDateToday, endDateToday } = getDate()
-    const [calls, setCalls] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [callType, setCallType] = useState('todos')
-    const [limit, setLimit] = useState(15)
-    const [page, setPage] = useState(1)
-    const [startDate, setStartDate] = useState(startDateToday)
-    const [endDate, setEndDate] = useState(endDateToday)
+    const [calls, setCalls] = useState<CallsProps[]>([])
+    const [loading, setLoading] = useState<boolean>(true)
+    const [callType, setCallType] = useState<string>('todos')
+    const [limit, setLimit] = useState<number>(15)
+    const [page, setPage] = useState<number>(1)
+    const [startDate, setStartDate] = useState<string>(startDateToday)
+    const [endDate, setEndDate] = useState<string>(endDateToday)
 
     /* Funcion para manejar la paginacion */
     const handlePage = (value: string) => {
@@ -29,15 +29,16 @@ const App = () => {
         setPage(Number(pageStorage))
     }
 
-    /* Funcion general para comprobar el storage y setear  + effect*/
-    const handleStorage = useCallback((key: string, setData) => {
+    /* Funcion general para comprobar el storage y setear + effect */
+    const handleStorage = useCallback((key: string, setData: React.Dispatch<React.SetStateAction<any>>) => {
         const existingData = localStorage.getItem(key)
         if (existingData !== null) {
             setData(JSON.parse(existingData))
         }
     }, [])
+
     useEffect(() => {
-        const storageMappings = {
+        const storageMappings: { [key: string]: React.Dispatch<React.SetStateAction<any>> } = {
             start_date: setStartDate,
             end_date: setEndDate,
             call_type: setCallType,
@@ -54,7 +55,7 @@ const App = () => {
 
     /* Manejo de la peticion */
     useEffect(() => {
-        const fetchCalls = async (page) => {
+        const fetchCalls = async (page: number) => {
             try {
                 setLoading(true)
                 const result = await callData(startDate, endDate, limit, page, callType)
