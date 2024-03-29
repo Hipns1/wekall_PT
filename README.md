@@ -2,14 +2,14 @@
 
 Esta aplicación es una solución para el registro de llamadas telefónicas, proporcionando funcionalidades para filtrar,
 paginar y visualizar los datos de llamadas simuladas. Se han utilizado [React](https://reactjs.org/) como framework y
-[Bootstrap](https://getbootstrap.com/) como librería de estilos.
+[MUI](https://mui.com/) como librería de estilos.
 
 ## Instrucciones de Uso
 
 ### Instalación
 
 1. Clona este repositorio en tu máquina local.
-2. Instala las dependencias usando npm:
+2. Instala las dependencias usando npm: `npm install`
 
 ### Ejecución
 

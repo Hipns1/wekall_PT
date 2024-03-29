@@ -19,7 +19,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ startDate, endDate, handleD
                 <img alt='' src={calendar} onClick={handleCalendar} />
             </div>
             <div className={isOpen ? `${s.calendar_container} ${s.isOpen}` : `${s.calendar_container} ${s.isClose}`}>
-                <img alt='' src={close} onClick={handleCalendar} className={s.icon_close} />
+                <img alt='' src={close} onClick={() => setIsOpen(!isOpen)} className={s.icon_close} />
                 <Calendar
                     maxDate={new Date()}
                     locale={'es-ES'}
@@ -29,7 +29,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ startDate, endDate, handleD
                     onChange={(date: any) => handleDate(date)}
                     value={[moment(startDate).toDate(), moment(endDate).toDate()]}
                 />
-                <button className={s.btn} onClick={handleCalendar}>
+                <button className={s.btn} onClick={() => setIsOpen(!isOpen)}>
                     Aplicar
                 </button>
             </div>
