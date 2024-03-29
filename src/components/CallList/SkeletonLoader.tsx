@@ -8,25 +8,28 @@ const SkeletonLoader = () => {
                     <TableHead>
                         <TableRow style={{ backgroundColor: 'rgba(25, 118, 210, 0.12)' }}>
                             <TableCell>
-                                <Skeleton animation='wave' height={40} width={50} />
+                                <Skeleton animation='wave' height={40} width={20} />
                             </TableCell>
                             <TableCell>
-                                <Skeleton animation='wave' height={40} width={110} />
+                                <Skeleton animation='wave' height={40} width={100} />
                             </TableCell>
                             <TableCell>
-                                <Skeleton animation='wave' height={40} width={110} />
+                                <Skeleton animation='wave' height={40} width={100} />
                             </TableCell>
                             <TableCell>
-                                <Skeleton animation='wave' height={40} width={110} />
+                                <Skeleton animation='wave' height={40} width={100} />
                             </TableCell>
                             <TableCell>
-                                <Skeleton animation='wave' height={40} width={80} />
-                            </TableCell>
-                            <TableCell>
-                                <Skeleton animation='wave' height={40} width={80} />
+                                <Skeleton animation='wave' height={40} width={100} />
                             </TableCell>
                             <TableCell>
                                 <Skeleton animation='wave' height={40} width={70} />
+                            </TableCell>
+                            <TableCell>
+                                <Skeleton animation='wave' height={40} width={70} />
+                            </TableCell>
+                            <TableCell>
+                                <Skeleton animation='wave' height={40} width={50} />
                             </TableCell>
                             <TableCell></TableCell>
                         </TableRow>
@@ -35,28 +38,31 @@ const SkeletonLoader = () => {
                         {new Array(15).fill(null).map((_, index) => (
                             <TableRow key={index}>
                                 <TableCell component='th' scope='row'>
-                                    <Skeleton animation='wave' width={50} />
+                                    <Skeleton animation='wave' width={20} />
                                 </TableCell>
                                 <TableCell>
-                                    <Skeleton animation='wave' width={110} />
+                                    <Skeleton animation='wave' width={100} />
                                 </TableCell>
                                 <TableCell>
-                                    <Skeleton animation='wave' width={110} />
+                                    <Skeleton animation='wave' width={100} />
                                 </TableCell>
                                 <TableCell>
-                                    <Skeleton animation='wave' width={110} />
+                                    <Skeleton animation='wave' width={100} />
                                 </TableCell>
                                 <TableCell>
-                                    <Skeleton animation='wave' width={80} />
-                                </TableCell>
-                                <TableCell>
-                                    <Skeleton animation='wave' width={80} />
+                                    <Skeleton animation='wave' width={100} />
                                 </TableCell>
                                 <TableCell>
                                     <Skeleton animation='wave' width={70} />
                                 </TableCell>
                                 <TableCell>
-                                    <Skeleton animation='wave' width={100} />
+                                    <Skeleton animation='wave' width={70} />
+                                </TableCell>
+                                <TableCell>
+                                    <Skeleton animation='wave' width={50} />
+                                </TableCell>
+                                <TableCell>
+                                    <Skeleton animation='wave' width={80} />
                                 </TableCell>
                             </TableRow>
                         ))}

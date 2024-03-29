@@ -28,6 +28,9 @@ const CallList: React.FC<CallListProps> = ({ calls, loading }) => {
                                         Agente
                                     </TableCell>
                                     <TableCell align='right' className={s.title}>
+                                        Destinatario
+                                    </TableCell>
+                                    <TableCell align='right' className={s.title}>
                                         Fecha
                                     </TableCell>
                                     <TableCell align='right' className={s.title}>
@@ -52,6 +55,7 @@ const CallList: React.FC<CallListProps> = ({ calls, loading }) => {
                                             {call?.id}
                                         </TableCell>
                                         <TableCell align='right'>{call?.agent}</TableCell>
+                                        <TableCell align='right'>{call?.destination}</TableCell>
                                         <TableCell align='right'>
                                             {moment(call?.start_date).format('YYYY/MM/DD')}
                                         </TableCell>
