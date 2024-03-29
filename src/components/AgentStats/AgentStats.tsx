@@ -6,6 +6,7 @@ import MinutesPerAgent from 'components/MinutesPerAgent/MinutesPerAgent'
 import CallTypePerAgent from 'components/CallTypePerAgent/CallTypePerAgent'
 import CallSrcPerAgent from 'components/CallSrcPerAgent/CallSrcPerAgent'
 import { AgentStatsProps } from 'models/data/AgentStatsProps'
+import { secondsToMinutes } from 'utils/secondsToMinutes'
 
 const AgentStats: React.FC<AgentStatsProps> = ({ calls, loading }) => {
     const callsPerAgent = calls.reduce((acc, call) => {
@@ -30,7 +31,7 @@ const AgentStats: React.FC<AgentStatsProps> = ({ calls, loading }) => {
     }, {})
 
     const totalMinutesPerAgent = calls.reduce((acc, call) => {
-        const durationMinutes = call.duration / 6
+        const durationMinutes = call.duration / 60
         acc[call.agent] = (acc[call.agent] || 0) + durationMinutes
         return acc
     }, {})
