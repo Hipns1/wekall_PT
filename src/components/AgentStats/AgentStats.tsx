@@ -6,7 +6,6 @@ import MinutesPerAgent from 'components/MinutesPerAgent/MinutesPerAgent'
 import CallTypePerAgent from 'components/CallTypePerAgent/CallTypePerAgent'
 import CallSrcPerAgent from 'components/CallSrcPerAgent/CallSrcPerAgent'
 import { AgentStatsProps } from 'models/data/AgentStatsProps'
-import { secondsToMinutes } from 'utils/secondsToMinutes'
 
 const AgentStats: React.FC<AgentStatsProps> = ({ calls, loading }) => {
     const callsPerAgent = calls.reduce((acc, call) => {
