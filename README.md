@@ -13,7 +13,7 @@ paginar y visualizar los datos de llamadas simuladas. Se han utilizado [React](h
 
 ### Ejecución
 
-1. Ejecuta la aplicación usando el siguiente comando:
+1. Ejecuta la aplicación usando el siguiente comando:`npm start`
 2. Abre tu navegador y visita [http://localhost:3000](http://localhost:3000).
 
 ## Funcionalidades Implementadas
@@ -28,22 +28,21 @@ paginar y visualizar los datos de llamadas simuladas. Se han utilizado [React](h
     - Número de llamadas que son primer contacto por agente y en total.
     - Número de llamadas entre extensiones.
     - Suma de minutos por agente.
-7. **Casos de Uso Adicionales:**
-    - Identificación de tendencias de llamadas por día de la semana.
-    - Análisis de duración promedio de llamadas por tipo de llamada.
-    - Seguimiento de cambios en el volumen de llamadas durante períodos específicos.
-8. **Valor Adicional Propuesto:**
-    - Análisis de la duración promedio de llamadas en función del origen y el destino.
+7. **Valor Adicional Propuesto:**
+    - Análisis de la duración promedio de llamadas, suma de llamadas y analisis de la fuente de la llamada.
 
 ## Pruebas Unitarias
 
 Se han implementado pruebas unitarias para garantizar el correcto funcionamiento de las funcionalidades clave de la
 aplicación.
 
+1. Puedes ejecutar las pruebas unitarias con el siguiente comando: `npm test`
+
 ## Persistencia de Estados
 
 La aplicación permite a los usuarios guardar y restaurar su estado de navegación, incluidos los filtros aplicados,
-incluso después de cerrar y volver a abrir la aplicación.
+incluso después de cerrar y volver a abrir la aplicación. Para lograr esta funcionalidad, se almacenaron los datos del
+usuario en el localStorage.
 
 ## Documentación para QA
 
@@ -81,12 +80,10 @@ incluso después de cerrar y volver a abrir la aplicación.
     últimas tecnologías web.
 
 Para más detalles técnicos y acceso al código fuente, por favor refiérase al repositorio en
-[GitHub](https://github.com/tuusuario/nombre-repo).
+[GitHub](https://github.com/Hipns1/wekall_PT).
 
 ---
 
-Por favor, siéntase libre de contactarme si tiene alguna pregunta o necesita más información.
-
 ¡Gracias!
 
-**Desarrollador:** Tu Nombre Tu Correo Electrónico
+**Desarrollado por:** Jesus David Perez Ferrer **email:** jesudpf21@hotmail.com
